@@ -8,8 +8,10 @@ async function getPosts(offset: number) {
   try {
     await dbConnect()
     // Logic to fetch posts from the database using the offset
-    return await PostModel.find().skip(offset).limit(10)
-  } catch (error) {
+    const totalDocuments=  PostModel.countDocuments()
+    console.log("total docs",totalDocuments)
+    return{leftDocuments:totalDocuments-offset-10, await PostModel.find().skip(offset).limit(10)}
+  } catch (error) {}
     throw new Error("Error fetching posts from database")
   }
 }
