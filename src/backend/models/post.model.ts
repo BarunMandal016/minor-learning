@@ -27,7 +27,7 @@ const PostSchema = new Schema<PostInterface>(
     //   required: true,
     // },
   },
-  { timestamps: true },
+  { timestamps: true},
 )
 
 PostSchema.index({ title: 1, deletedAt: 1 })

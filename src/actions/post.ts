@@ -2,16 +2,16 @@
 
 import { CreatePostBodyType } from "@/backend/service/post.service"
 
-async function getPostList(offset: number): Promise<CreatePostBodyType[]> {
-  console.log("Fetching posts with offset:", offset)
+async function getPostList(offset:number): Promise<CreatePostBodyType[]
+ > {
+
   await new Promise(resolve => setTimeout(resolve, 2000))
-  const result = await fetch(`http://localhost:3000/api/post/?offset=${offset}`, {
+  const result = await fetch(`http://localhost:3001/api/post/?offset=${offset}`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
     },
   })
-  console.log("Fetch result:", result)
   return await result.json()
 }
 async function createPost(data: {

@@ -4,14 +4,15 @@ export type CreatePostBodyType = Pick<
   PostInterface,
   "title" | "id" | "body" | "userId"
 >
-async function getPosts(offset: number) {
+async function getPosts(offset: number): Promise<CreatePostBodyType[]
+ > {
   try {
     await dbConnect()
-    // Logic to fetch posts from the database using the offset
-    const totalDocuments=  PostModel.countDocuments()
-    console.log("total docs",totalDocuments)
-    return{leftDocuments:totalDocuments-offset-10, await PostModel.find().skip(offset).limit(10)}
-  } catch (error) {}
+    // const documentsLeft =await PostModel.countDocuments({}).hint("_id_")
+    const documents = await PostModel.find().skip(offset).limit(10)
+    return documents
+  } catch (error) {
+    console.log("Error is:",error)
     throw new Error("Error fetching posts from database")
   }
 }

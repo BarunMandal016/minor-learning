@@ -1,13 +1,14 @@
 import { createPost, getPosts } from "@/backend/service/post.service"
 import { NextRequest, NextResponse } from "next/server"
 
-async function getHandler(request: NextRequest) {
+async function getHandler(request:NextRequest) {
     try {
         const offsetValue = Number(request.nextUrl.searchParams.get("offset")) || 0
-        const post= await getPosts(offsetValue)
-        return NextResponse.json(post)
+        const posts= await getPosts(offsetValue)
+        return NextResponse.json(posts)
     }
     catch(error){
+        console.log("Error is:", error)
         return NextResponse.json({message: "Error fetching posts"}, {status: 500})
     }
     
