@@ -1,3 +1,5 @@
+import UserPost from "@/app/components/UserPost"
+
 export default function Home() {
-  return <div>Learn by creating the branches from this templates</div>
+  return <UserPost />
 }
